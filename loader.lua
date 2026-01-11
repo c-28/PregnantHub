@@ -16,7 +16,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 local Window = Fluent:CreateWindow({
     Title = "PregnantHUB",
-    SubTitle = "update 4",
+    SubTitle = "update 5",
     TabWidth = 70,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = false,
@@ -28,7 +28,7 @@ local Tabs = {
     Changelogs = Window:AddTab({ Title = "Changelogs"}),
     Pregnancy = Window:AddTab({ Title = "Pregnancy"}),
     Asscheeks = Window:AddTab({ Title = "Asscheeks"}),
-    Kaicenat = Window:AddTab({ Title = "Kaicenat"}),
+    Kaicenat = Window:AddTab({ Title = "Feats"}),
     Twerking = Window:AddTab({ Title = "Twerking"}),
     Settings = Window:AddTab({ Title = "Settings"})
 }
@@ -40,6 +40,7 @@ Tabs.Twerking:AddParagraph({Title = "Twerking",Content = "Twerk"})
 
 --// changelog
 
+Tabs.Changelogs:AddParagraph({Title = "update 5",Content = "sheldon"})
 Tabs.Changelogs:AddParagraph({Title = "update 4",Content = "fixed it not working on respawn"})
 Tabs.Changelogs:AddParagraph({Title = "update 3",Content = "ass cheeks move with your ass now and twerking"})
 Tabs.Changelogs:AddParagraph({Title = "update 2",Content = "kai cenat pregnancy and asscheeks and bug fixes"})
@@ -51,8 +52,12 @@ Tabs.Changelogs:AddParagraph({Title = "update 1",Content = "release with pregnan
 --// kai cenat
 
 local kaicenat = Tabs.Kaicenat:AddToggle("kaicenat", {Title = "kai cenat", Default = false})
+local sheldon = Tabs.Kaicenat:AddToggle("sheldon", {Title = "sheldon", Default = false})
 
 kaicenat:OnChanged(function()
+    if kaicenat.Value and sheldon.Value then
+        sheldon:SetValue(false)
+    end
     for _, aaa in pairs({pregnant, leftcheek, rightcheek}) do 
         if aaa then
             for _, child in pairs(aaa:GetChildren()) do
@@ -70,6 +75,29 @@ kaicenat:OnChanged(function()
         end
     end
 end)
+
+sheldon:OnChanged(function()
+    if sheldon.Value and kaicenat.Value then
+        kaicenat:SetValue(false)
+    end
+    for _, aaa in pairs({pregnant, leftcheek, rightcheek}) do 
+        if aaa then
+            for _, child in pairs(aaa:GetChildren()) do
+                if child:IsA("Decal") then child:Destroy()
+                end
+            end
+            if sheldon.Value then
+                for _, bbb in pairs(Enum.NormalId:GetEnumItems()) do
+                    local sheldondiddyblud = Instance.new("Decal")
+                    sheldondiddyblud.Face = bbb
+                    sheldondiddyblud.Texture = "rbxassetid://18381331492"
+                    sheldondiddyblud.Parent = aaa
+                end
+            end
+        end
+    end
+end)
+
 
 --// pregnancy
 local pregnancy = Tabs.Pregnancy:AddToggle("pregnancy", {Title = "become pregnant", Default = false})
@@ -97,6 +125,14 @@ pregnancy:OnChanged(function()
                 kaicenatdiddyblud.Face = bbb
                 kaicenatdiddyblud.Texture = "rbxassetid://92158335976019"
                 kaicenatdiddyblud.Parent = pregnant
+            end
+        end
+        if sheldon and sheldon.Value then
+            for _, bbb in pairs(Enum.NormalId:GetEnumItems()) do
+                local sheldondiddyblud = Instance.new("Decal")
+                sheldondiddyblud.Face = bbb
+                sheldondiddyblud.Texture = "rbxassetid://92158335976019"
+                sheldondiddyblud.Parent = pregnant
             end
         end
     else
@@ -145,6 +181,20 @@ asscheeks:OnChanged(function()
                 kaicenatdiddyblud.Face = bbb
                 kaicenatdiddyblud.Texture = "rbxassetid://92158335976019"
                 kaicenatdiddyblud.Parent = rightcheek
+            end
+        end
+        if sheldon and sheldon.Value then
+            for _, bbb in pairs(Enum.NormalId:GetEnumItems()) do
+                local sheldondiddyblud = Instance.new("Decal")
+                sheldondiddyblud.Face = bbb
+                sheldondiddyblud.Texture = "rbxassetid://92158335976019"
+                sheldondiddyblud.Parent = leftcheek
+            end
+            for _, bbb in pairs(Enum.NormalId:GetEnumItems()) do
+                local sheldondiddyblud = Instance.new("Decal")
+                sheldondiddyblud.Face = bbb
+                sheldondiddyblud.Texture = "rbxassetid://92158335976019"
+                sheldondiddyblud.Parent = rightcheek
             end
         end
         leftweld.Part0 = lp.LowerTorso
