@@ -1,5 +1,5 @@
 if not game:IsLoaded() then game.Loaded:Wait() end
---// locals
+-- locals
 
 local player = game.Players.LocalPlayer
 local lp = player.Character or player.CharacterAdded:Wait()
@@ -9,14 +9,14 @@ player.CharacterAdded:Connect(function(char)
 end)
 local pregnant, weld, leftcheek, rightcheek, leftweld, rightweld, twerking = nil
 
---// ui
+-- ui
 
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/c-28/PregnantHub/refs/heads/main/fluent1.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
     Title = "PregnantHUB",
-    SubTitle = "update 5",
+    SubTitle = "update 6",
     TabWidth = 70,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = false,
@@ -38,26 +38,25 @@ Tabs.Asscheeks:AddParagraph({Title = "Asscheeks",Content = "Get big asscheeks in
 Tabs.Kaicenat:AddParagraph({Title = "Kai cenat",Content = "W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W W"})
 Tabs.Twerking:AddParagraph({Title = "Twerking",Content = "Twerk"})
 
---// changelog
+-- changelog
 
+Tabs.Changelogs:AddParagraph({Title = "update 6",Content = "albert"})
 Tabs.Changelogs:AddParagraph({Title = "update 5",Content = "sheldon"})
 Tabs.Changelogs:AddParagraph({Title = "update 4",Content = "fixed it not working on respawn"})
 Tabs.Changelogs:AddParagraph({Title = "update 3",Content = "ass cheeks move with your ass now and twerking"})
 Tabs.Changelogs:AddParagraph({Title = "update 2",Content = "kai cenat pregnancy and asscheeks and bug fixes"})
 Tabs.Changelogs:AddParagraph({Title = "update 1",Content = "release with pregnant and asscheeks"})
 
---// script
+-- script
 
 
---// kai cenat
+-- kai cenat
 
 local kaicenat = Tabs.Kaicenat:AddToggle("kaicenat", {Title = "kai cenat", Default = false})
 local sheldon = Tabs.Kaicenat:AddToggle("sheldon", {Title = "sheldon", Default = false})
+local albert = Tabs.Kaicenat:AddToggle("albert", {Title = "albert", Default = false})
 
 kaicenat:OnChanged(function()
-    if kaicenat.Value and sheldon.Value then
-        sheldon:SetValue(false)
-    end
     for _, aaa in pairs({pregnant, leftcheek, rightcheek}) do 
         if aaa then
             for _, child in pairs(aaa:GetChildren()) do
@@ -77,9 +76,6 @@ kaicenat:OnChanged(function()
 end)
 
 sheldon:OnChanged(function()
-    if sheldon.Value and kaicenat.Value then
-        kaicenat:SetValue(false)
-    end
     for _, aaa in pairs({pregnant, leftcheek, rightcheek}) do 
         if aaa then
             for _, child in pairs(aaa:GetChildren()) do
@@ -98,8 +94,27 @@ sheldon:OnChanged(function()
     end
 end)
 
+albert:OnChanged(function()
+    for _, aaa in pairs({pregnant, leftcheek, rightcheek}) do 
+        if aaa then
+            for _, child in pairs(aaa:GetChildren()) do
+                if child:IsA("Decal") then child:Destroy()
+                end
+            end
+            if albert.Value then
+                for _, bbb in pairs(Enum.NormalId:GetEnumItems()) do
+                    local albertdiddyblud = Instance.new("Decal")
+                    albertdiddyblud.Face = bbb
+                    albertdiddyblud.Texture = "rbxassetid://17259184437"
+                    albertdiddyblud.Parent = aaa
+                end
+            end
+        end
+    end
+end)
 
---// pregnancy
+
+-- pregnancy
 local pregnancy = Tabs.Pregnancy:AddToggle("pregnancy", {Title = "become pregnant", Default = false})
 local babysize = Tabs.Pregnancy:AddSlider("babysize", {Title = "baby size", Default = 2, Min = 1, Max = 10, Rounding = 1})
 local babycolor = Tabs.Pregnancy:AddColorpicker("babycolor", {Title = "pregant color", Default = Color3.fromRGB(255, 255, 255)})
@@ -150,7 +165,7 @@ babycolor:OnChanged(function()
     if pregnant then pregnant.Color = babycolor.Value end
 end)
 
---// asscheek
+-- asscheek
 local asscheeks = Tabs.Asscheeks:AddToggle("asscheeks", {Title = "get bbl", Default = false})
 local asscheekssize = Tabs.Asscheeks:AddSlider("asscheekssize", {Title = "bbl size", Default = 2, Min = 1, Max = 10, Rounding = 1})
 local asscheekscolor = Tabs.Asscheeks:AddColorpicker("asscheekscolor", {Title = "bbl color", Default = Color3.fromRGB(255, 255, 255)})
@@ -227,9 +242,7 @@ asscheekscolor:OnChanged(function()
     if rightcheek then rightcheek.Color = asscheekscolor.Value end
 end)
 
---// twerking
-
---// twerking
+-- twerking
 
 local twerk = Tabs.Twerking:AddToggle("twerk", {Title = "Twerk", Default = false})
 local twerkspeed = Tabs.Twerking:AddSlider("twerkspeed", {Title = "Twerk Speed", Default = 1, Min = 0.1, Max = 5, Rounding = 1})
@@ -255,7 +268,7 @@ twerk:OnChanged(function()
     end
 end)
 
---// respawn
+-- respawn
 
 player.CharacterAdded:Connect(function(a) 
     lp = a task.wait(2)
@@ -275,8 +288,19 @@ player.CharacterAdded:Connect(function(a)
     end
 end)
 
---// addons
+-- ui
 InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 Window:SelectTab(1)
 Fluent:Notify({Title = "PREGNANT HUB",Content = "PREGNANCY AND ASSCHEEK LOADED",Duration = 6.7})
+
+if math.random(1,100) == 67 then
+    Fluent:Notify({Title = "PREGNANT HUB",Content = "YOUR ARE THE GETTING CRASH",Duration = 6.7})
+    task.wait(1)
+    while true do end
+elseif math.random(1,10) == 5 then
+    if setfpscap then 
+        setfpscap(12)
+        Fluent:Notify({Title = "PREGNANT HUB",Content = "YOUR ARE THE GETTING FPS OPTIMIZER",Duration = 6.7})
+    end
+end
